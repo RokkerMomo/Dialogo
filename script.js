@@ -42,9 +42,9 @@ const abrirdialogo = document.getElementById("abrir");
       
         const newdialog = document.createElement("div");
         newdialog.innerHTML=`
-        <div class="modal" id="modal" style="visibility: hidden;">
+        <div class="modal" id="modal-${id}" style="visibility: hidden;">
         <button class="cerrar" id="cerrar"> <img src="cerrar.png" style="height: 15px; width: 15px;"></button>
-        <header class="header">Dialogo</header>
+        <header id="titulo-${id}" class="header">Dialogo</header>
         
         <div class="content" id="contenido-${id}">
         </div>
@@ -83,14 +83,46 @@ newdialog.querySelector("header").addEventListener("mousedown", ()=>{
 
     }
 
-    this.agregarelemento = function agregar(elemento,texto){
+    this.AgregarElemento = function agregar(elemento,texto,src,sizeX,sizeY){
         const newelement = document.createElement(elemento);
         const grid = document.getElementById(`contenido-${id}`)
         newelement.innerHTML=texto;
+        newelement.src=src;
+        newelement.style.setProperty("height", `${sizeX}`)
+        newelement.style.setProperty("width", `${sizeY}`)
         newelement.classList="grid-item"
         grid.appendChild(newelement);
 
     }
+
+    this.CambiarPropiedades = function prop(titulo,columnas,color,size){
+      const dialogo = document.getElementById(`modal-${id}`)
+      const grid = document.getElementById(`contenido-${id}`)
+      const header = document.getElementById(`titulo-${id}`)
+      header.innerHTML=titulo;
+      grid.style.setProperty("background-color", `${color}`)
+      dialogo.style.setProperty("max-width", `${size}`)
+      switch (columnas) {
+        case 1:
+          grid.style.setProperty("grid-template-columns", `100%`);
+          break;
+          case 2:
+            grid.style.setProperty("grid-template-columns", `50% 50%`);
+          break;
+          case 3:
+            grid.style.setProperty("grid-template-columns", `33% 33% 33%`);
+          break;
+          case 4:
+            grid.style.setProperty("grid-template-columns", `25% 25% 25% 25%`);
+          break;
+      
+        default:
+          break;
+      }
+      
+      
+
+  }
 
     
     
@@ -100,22 +132,48 @@ newdialog.querySelector("header").addEventListener("mousedown", ()=>{
   
   var d = new Dialogo("id");
   d.Crear();
+
+  d.CambiarPropiedades("Formulario",1,"green");
+  d.AgregarElemento("p","Nombre");
+  d.AgregarElemento("input","nombre");
+  d.AgregarElemento("p","Cedula");
+  d.AgregarElemento("input","cedula");
+  d.AgregarElemento("button","Confirmar");
+
+
   var d2 = new Dialogo("id2");
   d2.Crear();
-//   var d3 = new Dialogo("idk");
-//   d3.Crear();
-  
-  d.agregarelemento("header","nombre");
-  d.agregarelemento("input","nombre");
-  d.agregarelemento("p","cedula");
-  d.agregarelemento("input","cedula");
-  d.agregarelemento("button","confirmar");
 
-  d2.agregarelemento("input","input");
-  d2.agregarelemento("input","input");
-  d2.agregarelemento("input","input");
-  d2.agregarelemento("input","input");
-  d2.agregarelemento("input","input");s
+  d2.CambiarPropiedades("Historia",1,"red");
+  d2.AgregarElemento("div", `Denji is robbed of a normal teenage life, left with nothing but his deadbeat father's overwhelming debt. His only companion is his pet, the chainsaw devil Pochita, with whom he slays devils for money that inevitably ends up in the yakuza's pockets. All Denji can do is dream of a good, simple life: one with delicious food and a beautiful girlfriend by his side. But an act of greedy betrayal by the yakuza leads to Denji's brutal, untimely death, crushing all hope of him ever achieving happiness.
+
+  Remarkably, an old contract allows Pochita to merge with the deceased Denji and bestow devil powers on him, changing him into a hybrid able to transform his body parts into chainsaws. Because Denji's new abilities pose a significant risk to society, the Public Safety Bureau's elite devil hunter Makima takes him in, letting him live as long as he obeys her command. Guided by the promise of a content life alongside an attractive woman, Denji devotes everything and fights with all his might to make his naive dreams a reality.`)
+
+
+  var d3 = new Dialogo("id3");
+  d3.Crear();
+
+  d3.CambiarPropiedades("Fotos",3,"purple","1000px");
+  d3.AgregarElemento("img","","foto1.jpg","300px","300px")
+  d3.AgregarElemento("img","","foto2.png","300px","300px")
+  d3.AgregarElemento("img","","foto3.jpg","300px","300px")
+  d3.AgregarElemento("img","","foto4.png","300px","300px")
+  d3.AgregarElemento("img","","foto5.png","300px","300px")
+  d3.AgregarElemento("img","","foto6.jpg","300px","300px")
+  d3.AgregarElemento("img","","foto7.jpg","300px","300px")
+  d3.AgregarElemento("img","","foto8.jpg","300px","300px")
+  d3.AgregarElemento("img","","foto9.png","300px","300px")
+
+
+ 
+
+  
+  
+
+  
+
+
+  
 
   
 
