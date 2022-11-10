@@ -41,7 +41,6 @@ button {
 
 
   .content{
-    margin: .5rem .5rem .5rem;
     display: grid;
   grid-template-columns: 50% 50%;
 
@@ -50,12 +49,16 @@ button {
 
   .grid-item {
     background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(0, 0, 0, 0.8);
     padding: 10px;
     font-size: 20px;
     text-align: center;
     margin: 5px;
     border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: auto;
   }
 
   .modal{
