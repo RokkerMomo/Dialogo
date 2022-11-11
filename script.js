@@ -1,72 +1,35 @@
 const abrirdialogo = document.getElementById("abrir");
-// const dialogo = document.getElementById("modal");
-// const cerrar = document.getElementById("cerrar");
-// cabecera = dialogo.querySelector("header")
 
-
-// abrirdialogo.addEventListener('click', ()=>{
-
-//     dialogo.style.visibility="visible";
-// })
-
-// cerrar.addEventListener('click',()=>{
-//     dialogo.style.visibility="hidden";
-// })
-
-// function mover(ev){
-//     // let getStyle = window.getComputedStyle(dialogo);
-//     // let izquierda = parseInt(getStyle.left); 
-//     // let arriba =  parseInt(getStyle.top);
-//     // dialogo.style.left = `${izquierda + movementX}px`;
-//     // dialogo.style.top = `${arriba + movementY}px`;
-//     dialogo.style.setProperty("left", `${ev.x -225}px`);
-//     dialogo.style.setProperty("top", `${ev.y -20}px`);
-// }
-
-// cabecera.addEventListener("mousedown", ()=>{
-//     cabecera.classList.add("active");
-//     cabecera.addEventListener("mousemove", mover);
-//     window.addEventListener("mouseup", ()=>{
-//         cabecera.classList.remove("active");
-//         cabecera.removeEventListener("mousemove", mover);
-//       });
-//   });
-  
-  
-
+//Funcion para Crear Objeto Dialogo
   function Dialogo(id) {
 
-    console.log(id);
-    
+    //Funcion Crear Dialogo
     this.Crear =  function crearDialogo(){
       
+      //Crear Elemento HTML
         const newdialog = document.createElement("div");
         newdialog.innerHTML=`
         <div class="modal" id="modal-${id}" style="visibility: hidden;">
-        <button class="cerrar" id="cerrar"> <img src="cerrar.png" style="height: 15px; width: 15px;"></button>
+        <button class="cerrar" id="cerrar-${id}"> <img src="cerrar.png" style="height: 15px; width: 15px;"></button>
         <header id="titulo-${id}" class="header">Dialogo</header>
-        
         <div class="content" id="contenido-${id}">
         </div>
-        
     </div>`
 
+    //Se agrega el dialogo al Body
         document.body.appendChild(newdialog);
-        // console.log(newdialog.querySelector("header"));
-        // console.log(newdialog.querySelector("div"));
-        // console.log(newdialog.querySelector("button"));
-        
-        const cerrar = document.getElementById("cerrar");
-        // console.log(cerrar);
-        abrirdialogo.addEventListener('click', ()=>{
 
+        //Abrir Dialogos
+        abrirdialogo.addEventListener('click', ()=>{
             newdialog.querySelector("div").style.visibility="visible";
         })
 
+        //Funcion Para el boton De Cerrar
         newdialog.querySelector("button").addEventListener('click',()=>{
             newdialog.querySelector("div").style.visibility="hidden";
 })
     
+//Agregar eventlistener a la cabecera de los dialogos
 newdialog.querySelector("header").addEventListener("mousedown", ()=>{
     newdialog.querySelector("header").addEventListener("mousemove", mover);
     window.addEventListener("mouseup", ()=>{
@@ -74,8 +37,8 @@ newdialog.querySelector("header").addEventListener("mousedown", ()=>{
       });
   });
 
+  //Funcion Para Mover los Dialogos
   function mover(ev){
-
     newdialog.querySelector("div").style.setProperty("left", `${ev.x -225}px`);
     newdialog.querySelector("div").style.setProperty("top", `${ev.y -20}px`);
     
@@ -83,6 +46,7 @@ newdialog.querySelector("header").addEventListener("mousedown", ()=>{
 
     }
 
+    //Funcion Para Agregar Elementos al Dialogo
     this.AgregarElemento = function agregar(elemento,texto,src,sizeX,sizeY){
         const newelement = document.createElement(elemento);
         const grid = document.getElementById(`contenido-${id}`)
@@ -95,13 +59,20 @@ newdialog.querySelector("header").addEventListener("mousedown", ()=>{
 
     }
 
+    //Funcion Para Cambiar Propiedades del Dialogo
     this.CambiarPropiedades = function prop(titulo,columnas,color,size){
+
       const dialogo = document.getElementById(`modal-${id}`)
       const grid = document.getElementById(`contenido-${id}`)
       const header = document.getElementById(`titulo-${id}`)
-      header.innerHTML=titulo;
+    
       grid.style.setProperty("background-color", `${color}`)
       dialogo.style.setProperty("max-width", `${size}`)
+      header.innerHTML=titulo;
+
+
+
+     //Define cuantas columnas tiene el grid del dialogo
       switch (columnas) {
         case 1:
           grid.style.setProperty("grid-template-columns", `100%`);
@@ -119,41 +90,43 @@ newdialog.querySelector("header").addEventListener("mousedown", ()=>{
         default:
           break;
       }
-      
-      
 
   }
-
-    
-    
-
   }
 
-  
+  //crear dialogo D con id = id
   var d = new Dialogo("id");
   d.Crear();
-
+//asignar propiedades
   d.CambiarPropiedades("Formulario",1,"green");
+  //agregar elementos
   d.AgregarElemento("p","Nombre");
   d.AgregarElemento("input","nombre");
   d.AgregarElemento("p","Cedula");
   d.AgregarElemento("input","cedula");
   d.AgregarElemento("button","Confirmar");
 
-
+//crear dialogo d2 con id = id2
   var d2 = new Dialogo("id2");
   d2.Crear();
-
+//asignar propiedades
   d2.CambiarPropiedades("Historia",1,"red");
-  d2.AgregarElemento("div", `Denji is robbed of a normal teenage life, left with nothing but his deadbeat father's overwhelming debt. His only companion is his pet, the chainsaw devil Pochita, with whom he slays devils for money that inevitably ends up in the yakuza's pockets. All Denji can do is dream of a good, simple life: one with delicious food and a beautiful girlfriend by his side. But an act of greedy betrayal by the yakuza leads to Denji's brutal, untimely death, crushing all hope of him ever achieving happiness.
+  //agregar elemento
+  d2.AgregarElemento("div", `Denji is robbed of a normal teenage life, left with nothing but his deadbeat father's overwhelming debt.
+  His only companion is his pet, the chainsaw devil Pochita, with whom he slays devils for money that inevitably ends up in the yakuza's pockets.
+  All Denji can do is dream of a good, simple life: one with delicious food and a beautiful girlfriend by his side. But an act of greedy betrayal
+  by the yakuza leads to Denji's brutal, untimely death, crushing all hope of him ever achieving happiness.
 
-  Remarkably, an old contract allows Pochita to merge with the deceased Denji and bestow devil powers on him, changing him into a hybrid able to transform his body parts into chainsaws. Because Denji's new abilities pose a significant risk to society, the Public Safety Bureau's elite devil hunter Makima takes him in, letting him live as long as he obeys her command. Guided by the promise of a content life alongside an attractive woman, Denji devotes everything and fights with all his might to make his naive dreams a reality.`)
+  Remarkably, an old contract allows Pochita to merge with the deceased Denji and bestow devil powers on him, changing him into a hybrid able to transform his body parts into chainsaws.
+  Because Denji's new abilities pose a significant risk to society, the Public Safety Bureau's elite devil hunter Makima takes him in, letting him live as long as he obeys her command.
+  Guided by the promise of a content life alongside an attractive woman, Denji devotes everything and fights with all his might to make his naive dreams a reality.`)
 
-
+//Crear dialogo d3 con id =id3
   var d3 = new Dialogo("id3");
   d3.Crear();
-
+//asiganr propiedades
   d3.CambiarPropiedades("Fotos",3,"purple","1000px");
+  //agregar elementos
   d3.AgregarElemento("img","","foto1.jpg","300px","300px")
   d3.AgregarElemento("img","","foto2.png","300px","300px")
   d3.AgregarElemento("img","","foto3.jpg","300px","300px")
@@ -164,11 +137,15 @@ newdialog.querySelector("header").addEventListener("mousedown", ()=>{
   d3.AgregarElemento("img","","foto8.jpg","300px","300px")
   d3.AgregarElemento("img","","foto9.png","300px","300px")
 
-// modal1 = document.querySelector('id');
-// modal2 = document.querySelector('id2');
-// modal3 = document.querySelector('id3');
 
- 
+
+
+
+
+
+
+
+
 
   document.getElementById('modal-id').addEventListener('click', ()=>{
     focusd();
@@ -184,24 +161,16 @@ newdialog.querySelector("header").addEventListener("mousedown", ()=>{
   
 function focusd() {
   document.getElementById('modal-id').style.zIndex = 1
-  document.getElementById('modal-id2').style.zIndex = -1
-  document.getElementById('modal-id3').style.zIndex = -1
+  document.getElementById('modal-id2').style.zIndex = 0
+  document.getElementById('modal-id3').style.zIndex = 0
 }
 function focusd2() {
-  document.getElementById('modal-id').style.zIndex = -1
+  document.getElementById('modal-id').style.zIndex = 0
   document.getElementById('modal-id2').style.zIndex = 1
-  document.getElementById('modal-id3').style.zIndex = -1
+  document.getElementById('modal-id3').style.zIndex = 0
 }
 function focusd3() {
-  document.getElementById('modal-id').style.zIndex = -1
-  document.getElementById('modal-id2').style.zIndex = -1
-  document.getElementById('modal-id3').style.zIndex = 11
+  document.getElementById('modal-id').style.zIndex = 0
+  document.getElementById('modal-id2').style.zIndex = 0
+  document.getElementById('modal-id3').style.zIndex = 1
 }
-
-  
-
-  
-
-  console.log(document.body);
-  
-
