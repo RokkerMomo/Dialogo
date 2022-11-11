@@ -164,12 +164,6 @@ newdialog.querySelector("header").addEventListener("mousedown", ()=>{
   d3.AgregarElemento("img","","foto8.jpg","300px","300px")
   d3.AgregarElemento("img","","foto9.png","300px","300px")
 
-// modal1 = document.querySelector('id');
-// modal2 = document.querySelector('id2');
-// modal3 = document.querySelector('id3');
-
- 
-
   document.getElementById('modal-id').addEventListener('click', ()=>{
     focusd();
   })
@@ -184,18 +178,18 @@ newdialog.querySelector("header").addEventListener("mousedown", ()=>{
   
 function focusd() {
   document.getElementById('modal-id').style.zIndex = 1
-  document.getElementById('modal-id2').style.zIndex = -1
-  document.getElementById('modal-id3').style.zIndex = -1
+  document.getElementById('modal-id2').style.zIndex = 0
+  document.getElementById('modal-id3').style.zIndex = 0
 }
 function focusd2() {
-  document.getElementById('modal-id').style.zIndex = -1
+  document.getElementById('modal-id').style.zIndex = 0
   document.getElementById('modal-id2').style.zIndex = 1
-  document.getElementById('modal-id3').style.zIndex = -1
+  document.getElementById('modal-id3').style.zIndex = 0
 }
 function focusd3() {
-  document.getElementById('modal-id').style.zIndex = -1
-  document.getElementById('modal-id2').style.zIndex = -1
-  document.getElementById('modal-id3').style.zIndex = 11
+  document.getElementById('modal-id').style.zIndex = 0
+  document.getElementById('modal-id2').style.zIndex = 0
+  document.getElementById('modal-id3').style.zIndex = 1
 }
 
   
